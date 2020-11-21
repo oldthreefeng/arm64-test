@@ -23,10 +23,12 @@ jobs:
       - name: Build binareies to oss
         env:
           # fork friendly ^^
-          DOCKER_REPO: ${{ secrets.OSS_CONFIG }}
+          OSS_CONFIG: ${{ secrets.OSS_CONFIG }}
+          ak: ${{ secrets.HUAWEI_AK }}
+          sk: ${{ secrets.HUAWEI_SK }}
         run: |
           MYCLI_URL=$(curl -LsSf https://api.github.com/repos/oldthreefeng/mycli/releases/latest | jq -r ".assets[1].browser_download_url")
-          wget -c $MYCLI_URL && tar xvf mycli*.tar.gz && chmod +x mycli && mv mycli /usr/local/bin/mycli
-          wget https://github.com/cuisongliu/sshcmd/releases/download/v1.5.2/sshcmd && chmod a+x sshcmd && \
-                    mv sshcmd /usr/local/bin/sshcmd
+          wget -c $MYCLI_URL && tar xvf mycli*.tar.gz && chmod +x mycli
+          wget https://github.com/cuisongliu/sshcmd/releases/download/v1.5.2/sshcmd && chmod a+x sshcmd
+          export PATH=${PATH}:$(pwd)
           sh huawei/package.sh ${{ steps.prepare.outputs.tag_name }}
