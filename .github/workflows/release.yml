@@ -27,7 +27,7 @@ jobs:
           ak: ${{ secrets.HUAWEI_AK }}
           sk: ${{ secrets.HUAWEI_SK }}
         run: |
-          MYCLI_URL=$(curl -LsSf https://api.github.com/repos/oldthreefeng/mycli/releases/latest | jq -r ".assets[1].browser_download_url")
+          MYCLI_URL=$(curl -LsSf https://api.github.com/repos/oldthreefeng/mycli/releases/latest | jq -r ".assets[3].browser_download_url")
           wget -c $MYCLI_URL && tar xvf mycli*.tar.gz && chmod +x mycli
           wget https://github.com/cuisongliu/sshcmd/releases/download/v1.5.2/sshcmd && chmod a+x sshcmd
           export PATH=${PATH}:$(pwd)
