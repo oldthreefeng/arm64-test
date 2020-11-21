@@ -1,0 +1,41 @@
+[root@sealos-0001 ~]# kubectl get pod -A
+NAMESPACE     NAME                                       READY   STATUS    RESTARTS   AGE
+kube-system   calico-kube-controllers-84445dd79f-8sqcf   1/1     Running   0          2m32s
+kube-system   calico-node-2g98f                          1/1     Running   0          2m19s
+kube-system   calico-node-k44r8                          1/1     Running   0          82s
+kube-system   calico-node-n2f4w                          1/1     Running   0          90s
+kube-system   calico-node-r4vff                          1/1     Running   0          2m32s
+kube-system   coredns-66bff467f8-nnng4                   1/1     Running   0          2m32s
+kube-system   coredns-66bff467f8-xgk55                   1/1     Running   0          2m32s
+kube-system   etcd-sealos                                1/1     Running   0          2m39s
+kube-system   etcd-sealos-0001                           1/1     Running   0          2m
+kube-system   etcd-sealos-0002                           1/1     Running   0          2m
+kube-system   kube-apiserver-sealos                      1/1     Running   0          2m39s
+kube-system   kube-apiserver-sealos-0001                 1/1     Running   1          115s
+kube-system   kube-apiserver-sealos-0002                 1/1     Running   0          2m19s
+kube-system   kube-controller-manager-sealos             1/1     Running   1          2m39s
+kube-system   kube-controller-manager-sealos-0001        1/1     Running   0          56s
+kube-system   kube-controller-manager-sealos-0002        1/1     Running   0          2m18s
+kube-system   kube-proxy-8bbmq                           1/1     Running   0          90s
+kube-system   kube-proxy-c4zvv                           1/1     Running   0          2m19s
+kube-system   kube-proxy-ch52f                           1/1     Running   0          2m32s
+kube-system   kube-proxy-s5rp4                           1/1     Running   0          82s
+kube-system   kube-scheduler-sealos                      1/1     Running   1          2m39s
+kube-system   kube-scheduler-sealos-0001                 1/1     Running   0          62s
+kube-system   kube-scheduler-sealos-0002                 1/1     Running   0          2m18s
+kube-system   kube-sealyun-lvscare-sealos-0003           1/1     Running   0          10s
+[root@sealos-0001 ~]# kubectl get nodes 
+NAME          STATUS   ROLES    AGE     VERSION
+sealos        Ready    master   3m11s   v1.18.10
+sealos-0001   Ready    master   2m38s   v1.18.10
+sealos-0002   Ready    master   2m39s   v1.18.10
+sealos-0003   Ready    <none>   102s    v1.18.10
+[root@sealos-0001 ~]# kubectl get nodes -owide
+NAME          STATUS   ROLES    AGE     VERSION    INTERNAL-IP     EXTERNAL-IP   OS-IMAGE                   KERNEL-VERSION              CONTAINER-RUNTIME
+sealos        Ready    master   3m17s   v1.18.10   192.168.0.49    <none>        CentOS Linux 7 (AltArch)   4.18.0-80.7.2.el7.aarch64   docker://19.3.12
+sealos-0001   Ready    master   2m44s   v1.18.10   192.168.0.182   <none>        CentOS Linux 7 (AltArch)   4.18.0-80.7.2.el7.aarch64   docker://19.3.12
+sealos-0002   Ready    master   2m45s   v1.18.10   192.168.0.98    <none>        CentOS Linux 7 (AltArch)   4.18.0-80.7.2.el7.aarch64   docker://19.3.12
+sealos-0003   Ready    <none>   108s    v1.18.10   192.168.0.219   <none>        CentOS Linux 7 (AltArch)   4.18.0-80.7.2.el7.aarch64   docker://19.3.12
+[root@sealos-0001 ~]# arch
+aarch64
+

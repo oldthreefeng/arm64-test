@@ -1,0 +1,32 @@
+name: Release
+
+on:
+  push:
+    branches-ignore:
+      - '**'
+    tags:
+      - '*'
+
+jobs:
+  goreleaser:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Prepare
+        id: prepare
+        run: |
+          TAG=${GITHUB_REF#refs/tags/}
+          echo ::set-output name=tag_name::${TAG}
+
+      - name: Build binareies to oss
+        env:
+          # fork friendly ^^
+          DOCKER_REPO: ${{ secrets.OSS_CONFIG }}
+        run: |
+          MYCLI_URL=$(curl -LsSf https://api.github.com/repos/oldthreefeng/mycli/releases/latest | jq -r ".assets[1].browser_download_url")
+          wget -c $MYCLI_URL && tar xvf mycli*.tar.gz && chmod +x mycli && mv mycli /usr/local/bin/mycli
+          wget https://github.com/cuisongliu/sshcmd/releases/download/v1.5.2/sshcmd && chmod a+x sshcmd && \
+                    mv sshcmd /usr/local/bin/sshcmd
+          sh huawei/package.sh ${{ steps.prepare.outputs.tag_name }}
