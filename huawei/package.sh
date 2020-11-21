@@ -18,7 +18,7 @@ cat info.json && echo $ID && echo $FIP && echo $IP
 
 
 alias remotecmd="sshcmd --pk ./release.pem --host $FIP --cmd"
-shopt -s expand_aliases
+
 echo "install git"
 remotecmd 'yum install -y git conntrack'
 
