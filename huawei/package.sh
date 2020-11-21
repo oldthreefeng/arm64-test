@@ -23,10 +23,10 @@ echo "install git"
 remotecmd 'yum install -y git conntrack'
 
 echo "clone cloud kernel"
-remotecmd 'git clone https://github.com/oldthreefeng/cloud-kernel'
+remotecmd 'git clone https://github.com/oldthreefeng/arm64-test'
 
 echo "install kubernetes bin"
-remotecmd "cd cloud-kernel && \
+remotecmd "cd arm64-test && \
            wget https://dl.k8s.io/v$1/kubernetes-server-linux-arm64.tar.gz && \
            wget https://download.docker.com/linux/static/stable/aarch64/docker-19.03.12.tgz && \
            cp  docker-19.03.12.tgz kube/docker/docker.tgz && \
@@ -55,7 +55,7 @@ remotecmd "cd /tmp/ && wget http://gosspublic.alicdn.com/ossutil/1.6.19/ossutila
            echo ${OSS_CONFIG} | base64 -d >  /tmp/oss-config && \
            wget https://github.com/cuisongliu/sshcmd/releases/download/v1.5.2/sshcmd && chmod a+x sshcmd && \
            mv sshcmd /usr/sbin/sshcmd"
-remotecmd "cd /root/cloud-kernel/ && sh huawei/oss.sh $1 $2"
+remotecmd "cd /root/arm64-test/ && sh huawei/oss.sh $1 $2"
 
 #sshcmd --passwd $2 --host store.lameleg.com --cmd "sh release-k8s.sh $1 $FIP"
 
