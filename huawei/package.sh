@@ -17,7 +17,7 @@ FIP=$(jq -r '.addresses."a55545d8-a4cb-436d-a8ec-45c66aff725c"[1].addr' < info.j
 cat info.json && echo $ID && echo $FIP && echo $IP
 
 
-alias remotecmd="sshcmd --pk ./release.pem --host $FIP --cmd"
+alias remotecmd="mycli --pk ./release.pem --host $FIP --cmd"
 
 echo "install git"
 remotecmd 'yum install -y git conntrack'
@@ -55,7 +55,7 @@ remotecmd "cd /tmp/ && wget http://gosspublic.alicdn.com/ossutil/1.6.19/ossutila
            echo ${OSS_CONFIG} | base64 -d >  /tmp/oss-config "
 remotecmd "cd /root/arm64-test/ && sh huawei/oss.sh $1 $2"
 
-#sshcmd --passwd $2 --host store.lameleg.com --cmd "sh release-k8s.sh $1 $FIP"
+#mycli --passwd $2 --host store.lameleg.com --cmd "sh release-k8s.sh $1 $FIP"
 
 #echo "release instance"
 #sleep 20
