@@ -1,0 +1,12 @@
+market:
+  body:
+    spec:
+      name: vVERSION
+      price: 100
+      product:
+        class: cloud_kernel
+        productName: kubernetes-arm
+      url: /tmp/kubeVERSION-arm64.tar.gz
+    status:
+      productVersionStatus: 2
+  kind: productVersion

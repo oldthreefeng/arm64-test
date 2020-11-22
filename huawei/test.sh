@@ -35,9 +35,9 @@ echo "[CHECK] all nodes IP: $master0 $master1 $master2 $node"
 echo "wait for sshd start"
 sleep 100 # wait for sshd
 # $2 is sealos clientip
-alias remotecmd="sshcmd --pk ./release.pem --host $2 --cmd"
+alias remotecmd="mycli --pk ./release.pem --host $2 --cmd"
 
-echo "sshcmd sealos command"
+echo "mycli sealos command"
 ## github sealos assets[1] is arm64
 SEALOS_URL=$(curl -LsSf https://api.github.com/repos/fanux/sealos/releases/latest | jq -r ".assets[1].browser_download_url")
 
@@ -49,16 +49,14 @@ echo "sealos init --master $master0 --master $master1 --master $master2 \
     --node $node --passwd Louishong4168@123 --version v$1 --pkg-url /tmp/kube$1-arm64.tar.gz"
 
 echo "[CHECK] wait for everything ok"
-sleep 100
-sshcmd --passwd "Louishong4168@123" --host $master0FIP --cmd "kubectl get node && kubectl get pod --all-namespaces"
+sleep 200
+mycli --passwd "Louishong4168@123" --host $master0FIP --cmd "kubectl get node && kubectl get pod --all-namespaces"
 
-echo "[CHECK] sshcmd sealos clean command"
+echo "[CHECK] mycli sealos clean command"
 #remotecmd "sealos clean --master $master0 --master $master1 --master $master2 \
 #    --node $node --passwd Fanux#123"
 
 echo "release instance"
-sleep 60
-
 
 mycli hw delete --id $ID0 --eip
 mycli hw delete --id $ID1
