@@ -53,10 +53,7 @@ sh huawei/test.sh $1  $FIP
 
 
 echo "release package, need remote server passwd, WARN will pending"
-remotecmd "cd /tmp/ && wget http://gosspublic.alicdn.com/ossutil/1.6.19/ossutilarm64  && chmod 755 ossutilarm64 && \
-           mv ossutilarm64 /usr/sbin/ossutil64 && \
-           echo ${OSS_CONFIG} | base64 -d >  /tmp/oss-config "
-remotecmd "cd /root/arm64-test/ && sh huawei/oss.sh $1 $2"
+remotecmd "sh huawei/oss.sh $1 $2"
 
 #mycli --passwd $2 --host store.lameleg.com --cmd "sh release-k8s.sh $1 $FIP"
 

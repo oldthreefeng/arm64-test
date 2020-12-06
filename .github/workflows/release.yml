@@ -28,8 +28,9 @@ jobs:
           sk: ${{ secrets.HUAWEI_SK }}
           MARKET_API_TOKEN: ${{ secrets.MARKET_API_TOKEN }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          Version: ${{ steps.prepare.outputs.tag_name }}
         run: |
           MYCLI_URL=$(curl -LsSf https://api.github.com/repos/oldthreefeng/mycli/releases/latest | jq -r ".assets[2].browser_download_url")
           wget -c $MYCLI_URL && tar xvf mycli*.tar.gz && chmod +x mycli
           export PATH=${PATH}:$(pwd)
-          sh huawei/package.sh ${{ steps.prepare.outputs.tag_name }}
+          sh huawei/package.sh $Version $MARKET_API_TOKEN
