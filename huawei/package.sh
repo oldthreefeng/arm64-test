@@ -53,7 +53,7 @@ sh huawei/test.sh $1  $FIP
 
 
 echo "release package, need remote server passwd, WARN will pending"
-remotecmd "sh huawei/oss.sh $1 $2"
+remotecmd "cd /root/arm64-test/ && sh huawei/oss.sh $1 $2"
 
 #mycli --passwd $2 --host store.lameleg.com --cmd "sh release-k8s.sh $1 $FIP"
 
