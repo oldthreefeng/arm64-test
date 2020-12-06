@@ -8,7 +8,7 @@ cat InstanceId.json
 ID=$(jq -r '.serverIds[0]' < InstanceId.json)
 ## wait to bind fip and ssh start
 echo "wait to bind fip and ssh start"
-sleep 180s
+sleep 140s
 mycli hw list --id $ID > info.json
 
 IP=$(jq -r '.addresses."a55545d8-a4cb-436d-a8ec-45c66aff725c"[0].addr' < info.json)
@@ -29,7 +29,7 @@ echo "install kubernetes bin"
 remotecmd "cd arm64-test && \
            wget https://dl.k8s.io/v$1/kubernetes-server-linux-arm64.tar.gz && \
            wget https://download.docker.com/linux/static/stable/aarch64/docker-19.03.12.tgz && \
-		   wget https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.19.0/crictl-v1.19.0-linux-arm64.tar.gz && \
+           wget https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.19.0/crictl-v1.19.0-linux-arm64.tar.gz && \
            cp  docker-19.03.12.tgz kube/docker/docker.tgz && \
            tar zxvf kubernetes-server-linux-arm64.tar.gz && \
 		   tar xf crictl-v1.19.0-linux-arm64.tar.gz  && \
@@ -41,10 +41,10 @@ remotecmd "cd arm64-test && \
            sed s/k8s_version/$1/g -i conf/kubeadm.yaml && \
            cd shell && sh init.sh && \
            rm -rf /etc/docker/daemon.json && systemctl restart docker && \
-           sh master.sh && \
            docker pull fanux/lvscare && \
+           sh master.sh && \
            cp /usr/sbin/conntrack ../bin/ && \
-           cd ../.. && sleep 360 && docker images && \
+           cd ../.. && sleep 120 && docker images && \
            sh save.sh && \
            tar zcvf kube$1-arm64.tar.gz kube && mv kube$1-arm64.tar.gz /tmp/kube$1-arm64.tar.gz"
 
@@ -52,12 +52,7 @@ remotecmd "cd arm64-test && \
 sh huawei/test.sh $1  $FIP
 
 
-echo "release package, need remote server passwd, WARN will pending"
 remotecmd "cd /root/arm64-test/ && sh huawei/oss.sh $1 $2"
 
-#mycli --passwd $2 --host store.lameleg.com --cmd "sh release-k8s.sh $1 $FIP"
-
-#echo "release instance"
-#sleep 20
 mycli hw delete --id $ID --eip
 echo "mycli hw delete --id $ID --eip"
