@@ -28,23 +28,20 @@ remotecmd "git clone https://${GH_TOKEN}@github.com/oldthreefeng/arm64-test"
 echo "install kubernetes bin"
 remotecmd "cd arm64-test && \
            wget https://dl.k8s.io/v$1/kubernetes-server-linux-arm64.tar.gz && \
-           wget https://download.docker.com/linux/static/stable/aarch64/docker-19.03.12.tgz && \
-           wget https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.19.0/crictl-v1.19.0-linux-arm64.tar.gz && \
-           cp  docker-19.03.12.tgz kube/docker/docker.tgz && \
+           wget https://github.com/sealyun-market/containerd/releases/download/v1.3.9/cri-containerd-cni-1.3.9-linux-arm64.tar.gz && \
+           cp  cri-containerd-cni-1.3.9-linux-amd64.tar.gz kube/containerd/cri-containerd-cni-linux-amd64.tar.gz && \
            tar zxvf kubernetes-server-linux-arm64.tar.gz && \
-		   tar xf crictl-v1.19.0-linux-arm64.tar.gz  && \
            cd kube && \
-		   cp ../crictl bin/ && \
            cp ../kubernetes/server/bin/kubectl bin/ && \
            cp ../kubernetes/server/bin/kubelet bin/ && \
            cp ../kubernetes/server/bin/kubeadm bin/ && \
            sed s/k8s_version/$1/g -i conf/kubeadm.yaml && \
-           cd shell && sh init.sh && \
-           rm -rf /etc/docker/daemon.json && systemctl restart docker && \
-           docker pull fanux/lvscare && \
+           cd shell && chmod a+x containerd.sh && sh containerd.sh && \
+           systemctl restart containerd && \
+           crictl pull fanux/lvscare && \
            sh master.sh && \
            cp /usr/sbin/conntrack ../bin/ && \
-           cd ../.. && sleep 120 && docker images && \
+           cd ../.. && sleep 120 && crictl images && \
            sh save.sh && \
            tar zcvf kube$1-arm64.tar.gz kube && mv kube$1-arm64.tar.gz /tmp/kube$1-arm64.tar.gz"
 
