@@ -10,12 +10,11 @@ git tag 1.14.6
 git push --tags
 ```
 
-# 虚拟机申请
-
-把配置好的.aliyun/config.json进行base64加密，设置成drone的secret
 
 # 使用
 ```
-docker run --rm -v /Users/fanux/.aliyun:/root/.aliyun -it fanux/aliyun-cli sh
-# sh package.sh 1.15.4 
+$ export ak=xxxx  
+$ export sk=xxxx
+$ docker run --rm -e ak=$ak sk=$sk -it louisehong/mycli sh
+# sh package.sh 1.15.4
 ```
