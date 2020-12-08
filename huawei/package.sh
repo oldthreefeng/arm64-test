@@ -23,7 +23,16 @@ echo "install git"
 remotecmd 'yum install -y git conntrack'
 
 echo "clone cloud kernel"
-remotecmd "git clone https://${GH_TOKEN}@github.com/oldthreefeng/arm64-test"
+
+version_ge(){
+    test "$(echo "$@" | tr ' ' '\n' | sort -rV | head -n 1)" == "$1"
+}
+
+if version_ge "$1" 1.20; then
+	remotecmd "git clone https://${GH_TOKEN}@github.com/oldthreefeng/arm64-test && cd arm64-test && git checkout containerd"
+else 
+	remotecmd "git clone https://${GH_TOKEN}@github.com/oldthreefeng/arm64-test"
+fi
 
 echo "install kubernetes bin"
 remotecmd "cd arm64-test && \
