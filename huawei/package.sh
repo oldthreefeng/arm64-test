@@ -28,8 +28,8 @@ remotecmd "git clone https://${GH_TOKEN}@github.com/oldthreefeng/arm64-test"
 echo "install kubernetes bin"
 remotecmd "cd arm64-test && \
            wget https://dl.k8s.io/v$1/kubernetes-server-linux-arm64.tar.gz && \
-           wget https://github.com/sealyun-market/containerd/releases/download/v1.3.9/cri-containerd-cni-1.3.9-linux-arm64.tar.gz && \
-           cp  cri-containerd-cni-1.3.9-linux-amd64.tar.gz kube/containerd/cri-containerd-cni-linux-amd64.tar.gz && \
+           wget https://github.com/sealyun-market/containerd/releases/download/v1.3.9/containerd-1.3.9-linux-arm64.tar.gz  && \
+           cp  containerd-1.3.9-linux-arm64.tar.gz kube/containerd/containerd-linux-arm64.tar.gz && \
            tar zxvf kubernetes-server-linux-arm64.tar.gz && \
            cd kube && \
            cp ../kubernetes/server/bin/kubectl bin/ && \
