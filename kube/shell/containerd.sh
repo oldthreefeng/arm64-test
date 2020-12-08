@@ -9,7 +9,7 @@ command_exists() {
 }
 set -x
 if ! command_exists ctr; then
-  tar  xvf ../containerd/containerd-linux-arm64.tar.gz -C /
+  tar  xvf ../containerd/cri-containerd-cni-linux-arm64.tar.gz -C /
   systemctl enable  containerd.service
   systemctl restart containerd.service
 fi
