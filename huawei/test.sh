@@ -30,7 +30,7 @@ master2=$(jq -r '.addresses."a55545d8-a4cb-436d-a8ec-45c66aff725c"[0].addr'  < i
 mycli hw list --id $ID3 > info.json
 node=$(jq -r '.addresses."a55545d8-a4cb-436d-a8ec-45c66aff725c"[0].addr'  < info.json)
 
-echo "[CHECK] all nodes IP: $master0 $master1 $master2 $node"
+echo "[CHECK] all nodes IP: eip: $master0FIP, master: $master0 $master1 $master2 ,node: $node"
 
 echo "wait for sshd start"
 sleep 100 # wait for sshd
