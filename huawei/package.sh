@@ -39,7 +39,7 @@ remotecmd "cd arm64-test && \
            sed s/k8s_version/$1/g -i conf/kubeadm.yaml && \
            cd shell && chmod a+x containerd.sh && sh containerd.sh && \
            systemctl restart containerd && \
-           crictl pull fanux/lvscare && \
+           ctr -n=k8s.io image fanux/lvscare && \
            sh init.sh && sh master.sh && \
            cp /usr/sbin/conntrack ../bin/ && \
            cd ../.. && sleep 120 && crictl images && \
