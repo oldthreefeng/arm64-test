@@ -48,7 +48,7 @@ remotecmd "cd arm64-test && \
            cd shell && chmod a+x containerd.sh && sh containerd.sh && \
            systemctl restart containerd && \
            crictl pull fanux/lvscare && \
-           sh master.sh && \
+           sh init.sh && sh master.sh && \
            cp /usr/sbin/conntrack ../bin/ && \
            cd ../.. && sleep 120 && crictl images && \
            sh save.sh && \
