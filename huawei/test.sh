@@ -49,7 +49,7 @@ echo "sealos init --master $master0 --master $master1 --master $master2 \
 
 echo "[CHECK] wait for everything ok"
 sleep 200
-mycli --passwd "Louishong4168@123" --host $master0FIP --cmd "kubectl get node && kubectl get pod --all-namespaces"
+mycli --passwd "Louishong4168@123" --host $master0FIP --cmd "kubectl get node -owide && kubectl get pod --all-namespaces"
 
 echo "[CHECK] mycli sealos clean command"
 #remotecmd "sealos clean --master $master0 --master $master1 --master $master2 \
