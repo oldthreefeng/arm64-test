@@ -38,7 +38,7 @@ echo "install kubernetes bin"
 remotecmd "cd arm64-test && \
            wget https://dl.k8s.io/v$1/kubernetes-server-linux-arm64.tar.gz && \
            wget https://github.com/sealyun-market/containerd/releases/download/v1.4.3/cri-containerd-cni-1.4.3-linux-arm64.tar.gz  && \
-           cp  cri-containerd-cni-*-linux-arm64.tar.gz kube/containerd/cri-containerd-cni-linux-arm64.tar.gz && \
+           cp cri-containerd-cni-1.4.3-linux-arm64.tar.gz kube/containerd/cri-containerd-cni-linux-arm64.tar.gz && \
            tar zxvf kubernetes-server-linux-arm64.tar.gz && \
            cd kube && \
            cp ../kubernetes/server/bin/kubectl bin/ && \
