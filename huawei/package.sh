@@ -14,13 +14,13 @@ mycli hw list --id $ID > info.json
 IP=$(jq -r '.addresses."a55545d8-a4cb-436d-a8ec-45c66aff725c"[0].addr' < info.json)
 FIP=$(jq -r '.addresses."a55545d8-a4cb-436d-a8ec-45c66aff725c"[1].addr' < info.json)
 
-cat info.json && echo $ID && echo $FIP && echo $IP
+cat info.json && echo "id: $ID, eip: $FIP , ip:$IP"
 
 
 alias remotecmd="mycli --pk ./release.pem --host $FIP --cmd"
 
-echo "install git"
-remotecmd 'yum install -y git conntrack'
+echo "install git conntrack with quiet"
+remotecmd 'yum install -y git conntrack -q'
 
 echo "clone cloud kernel"
 remotecmd "git clone https://${GH_TOKEN}@github.com/oldthreefeng/arm64-test"
@@ -45,7 +45,7 @@ remotecmd "cd arm64-test && \
            sh master.sh && \
            cp /usr/sbin/conntrack ../bin/ && \
            cd ../.. && sleep 120 && docker images && \
-           sh save.sh && \
+           sh save.sh  && \
            tar zcvf kube$1-arm64.tar.gz kube && mv kube$1-arm64.tar.gz /tmp/kube$1-arm64.tar.gz"
 
 # run init test
