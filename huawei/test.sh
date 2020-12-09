@@ -39,9 +39,8 @@ alias remotecmd="mycli --pk ./release.pem --host $2 --cmd"
 
 echo "mycli sealos command"
 ## github sealos assets[1] is arm64
-SEALOS_URL=$(curl -LsSf https://api.github.com/repos/fanux/sealos/releases/latest | jq -r ".assets[1].browser_download_url")
 
-remotecmd "wget -c $SEALOS_URL && chmod +x sealos-arm64 && mv sealos-arm64 /usr/bin/sealos "
+remotecmd "wget -c https://sealyun.oss-cn-beijing.aliyuncs.com/latest/sealos-arm64 && chmod +x sealos-arm64 && mv sealos-arm64 /usr/bin/sealos "
 
 remotecmd "sealos init --master $master0 --master $master1 --master $master2 \
     --node $node --passwd Louishong4168@123 --version v$1 --pkg-url /tmp/kube$1-arm64.tar.gz"
