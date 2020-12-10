@@ -46,7 +46,7 @@ remotecmd "wget -c $SEALOS_URL && chmod +x sealos-arm64 && mv sealos-arm64 /usr/
 remotecmd "sealos init --master $master0 --master $master1 --master $master2 \
     --node $node --passwd Louishong4168@123 --version v$1 --pkg-url /tmp/kube$1-arm64.tar.gz"
 echo "sealos init --master $master0 --master $master1 --master $master2 \
-    --node $node --passwd Louishong4168@123 --version v$1 --pkg-url /tmp/kube$1-arm64.tar.gz"
+    --node $node --passwd xxxx --version v$1 --pkg-url /tmp/kube$1-arm64.tar.gz"
 
 echo "[CHECK] wait for everything ok"
 sleep 200
