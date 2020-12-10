@@ -55,4 +55,8 @@ sh huawei/test.sh $1  $FIP
 remotecmd "cd /root/arm64-test/ && sh huawei/oss.sh $1 $2"
 
 mycli hw delete --id $ID --eip
+
 echo "mycli hw delete --id $ID --eip"
+curl "https://oapi.dingtalk.com/robot/send?access_token=${DD_TOKEN}" \
+   -H "Content-Type: application/json" \
+   -d "{\"msgtype\":\"link\",\"link\":{\"text\":\"kubernetes-arm64自动发布版本v$1\",\"title\":\"kube$1-arm64 发布成功\",\"picUrl\":\"\",\"messageUrl\":\"https://sealyun.com\"}}"
