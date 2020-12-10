@@ -46,7 +46,7 @@ remotecmd "cd arm64-test && \
            cp /usr/sbin/conntrack ../bin/ && \
            cd ../.. && sleep 120 && docker images && \
            sh save.sh  && \
-           tar zcvf kube$1-arm64.tar.gz kube && mv kube$1-arm64.tar.gz /tmp/kube$1-arm64.tar.gz"
+           tar zcf kube$1-arm64.tar.gz kube && mv kube$1-arm64.tar.gz /tmp/kube$1-arm64.tar.gz"
 
 # run init test
 sh huawei/test.sh $1  $FIP
