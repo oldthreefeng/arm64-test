@@ -15,6 +15,6 @@ git push --tags
 ```
 $ export ak=xxxx  
 $ export sk=xxxx
-$ docker run --rm -e ak=$ak sk=$sk -it louisehong/mycli sh
+$ docker run --rm -e ak=$ak sk=$sk -it louisehong/arm64 sh
 # sh package.sh 1.15.4
 ```
