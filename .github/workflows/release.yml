@@ -34,4 +34,4 @@ jobs:
           MYCLI_URL=$(curl -LsSf https://api.github.com/repos/oldthreefeng/mycli/releases/latest | jq -r ".assets[2].browser_download_url")
           wget -c $MYCLI_URL && tar xvf mycli*.tar.gz && chmod +x mycli
           export PATH=${PATH}:$(pwd)
-          sh huawei/package.sh $Version $MARKET_API_TOKEN
+          sh huawei/package.sh $Version $MARKET_API_TOKEN $DD_TOKEN
