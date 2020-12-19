@@ -39,7 +39,7 @@ remotecmd "cd arm64-test && \
            sed s/k8s_version/$1/g -i conf/kubeadm.yaml && \
            cd shell && chmod a+x containerd.sh && sh containerd.sh && \
            systemctl restart containerd && \
-           ctr -n=k8s.io images pull docker.io/fanux/lvscare:lastet && \
+           crictl pull fanux/lvscare && ctr -n=k8s.io images pull docker.io/fanux/lvscare:lastet && \
            sh init.sh && sh master.sh && \
            cp /usr/sbin/conntrack ../bin/ && \
            cd ../.. && sleep 120 && crictl images && \
@@ -55,6 +55,7 @@ remotecmd "cd /root/arm64-test/ && sh huawei/oss.sh $1 $2"
 mycli hw delete --id $ID --eip
 
 echo "mycli hw delete --id $ID --eip"
+echo "dingding: $3"
 curl "https://oapi.dingtalk.com/robot/send?access_token=$3" \
    -H "Content-Type: application/json" \
    -d "{\"msgtype\":\"link\",\"link\":{\"text\":\"kubernetes-arm64自动发布版本v$1\",\"title\":\"kube$1-arm64 发布成功\",\"picUrl\":\"\",\"messageUrl\":\"https://sealyun.com\"}}"
