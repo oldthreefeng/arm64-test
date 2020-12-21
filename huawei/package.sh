@@ -42,6 +42,7 @@ remotecmd "cd arm64-test && \
            ctr -n=k8s.io images pull docker.io/fanux/lvscare:latest && \
            sh init.sh && sh master.sh && \
            cp /usr/sbin/conntrack ../bin/ && \
+           cp /usr/lib64/libseccomp* ../lib64/ && \
            cd ../.. && sleep 120 && crictl images && \
            sh save.sh  && \
            tar zcvf kube$1-arm64.tar.gz kube && mv kube$1-arm64.tar.gz /tmp/kube$1-arm64.tar.gz"
