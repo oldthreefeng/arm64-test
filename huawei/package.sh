@@ -16,6 +16,7 @@ FIP=$(jq -r '.addresses."a55545d8-a4cb-436d-a8ec-45c66aff725c"[1].addr' < info.j
 
 cat info.json && echo "id: $ID, eip: $FIP , ip:$IP"
 
+echo "$RELEASE_KEY" > ./release.pem
 
 alias remotecmd="mycli --pk ./release.pem --host $FIP --cmd"
 
@@ -56,8 +57,3 @@ remotecmd "cd /root/arm64-test/ && sh huawei/oss.sh $1 $2"
 mycli hw delete --id $ID --eip
 
 echo "mycli hw delete --id $ID --eip"
-echo "dingding: $3"
-curl "https://oapi.dingtalk.com/robot/send?access_token=$3" \
-   -H "Content-Type: application/json" \
-   -d "{\"msgtype\":\"link\",\"link\":{\"text\":\"kubernetes-arm64自动发布版本v$1\",\"title\":\"kube$1-arm64 发布成功\",\"picUrl\":\"\",\"messageUrl\":\"https://sealyun.com\"}}"
-
