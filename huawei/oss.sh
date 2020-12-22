@@ -19,4 +19,4 @@ market:
   kind: productVersion
 EOF
 
-./marketctl create -f marketctl_$1.yaml --token $2 --ci
+./marketctl apply -f marketctl_$1.yaml --token $2 --ci

@@ -39,7 +39,7 @@ alias remotecmd="mycli --pk ./release.pem --host $2 --cmd"
 
 echo "mycli sealos command"
 
-remotecmd "wget -c wget -c https://sealyun.oss-cn-beijing.aliyuncs.com/latest/sealos-arm64  && chmod +x sealos-arm64 && mv sealos-arm64 /usr/bin/sealos "
+remotecmd "wget -c https://sealyun.oss-cn-beijing.aliyuncs.com/latest/sealos-arm64  && chmod +x sealos-arm64 && mv sealos-arm64 /usr/bin/sealos "
 
 remotecmd "sealos init --master $master0 --master $master1 --master $master2 \
     --node $node --passwd Louishong4168@123 --version v$1 --pkg-url /tmp/kube$1-arm64.tar.gz --info"
