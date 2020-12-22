@@ -44,7 +44,7 @@ SEALOS_URL=$(curl -LsSf https://api.github.com/repos/fanux/sealos/releases/lates
 remotecmd "wget -c $SEALOS_URL && chmod +x sealos-arm64 && mv sealos-arm64 /usr/bin/sealos "
 
 remotecmd "sealos init --master $master0 --master $master1 --master $master2 \
-    --node $node --passwd Louishong4168@123 --version v$1 --pkg-url /tmp/kube$1-arm64.tar.gz"
+    --node $node --passwd Louishong4168@123 --version v$1 --pkg-url /tmp/kube$1-arm64.tar.gz --info"
 echo "sealos init --master $master0 --master $master1 --master $master2 \
     --node $node --passwd xxxx --version v$1 --pkg-url /tmp/kube$1-arm64.tar.gz"
 
