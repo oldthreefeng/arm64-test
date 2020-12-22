@@ -16,8 +16,6 @@ FIP=$(jq -r '.addresses."a55545d8-a4cb-436d-a8ec-45c66aff725c"[1].addr' < info.j
 
 cat info.json && echo "id: $ID, eip: $FIP , ip:$IP"
 
-echo "$RELEASE_KEY" > ./release.pem
-
 alias remotecmd="mycli --pk ./release.pem --host $FIP --cmd"
 
 echo "install git conntrack with quiet"
