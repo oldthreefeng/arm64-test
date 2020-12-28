@@ -9,7 +9,7 @@ market:
   body:
     spec:
       name: v$1
-      price: 100
+      price: 99
       product:
         class: cloud_kernel
         productName: kubernetes-arm64
