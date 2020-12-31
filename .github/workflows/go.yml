@@ -40,7 +40,7 @@ jobs:
           [[ ! "$VERSION" =~ [0-9] ]] && export VERSION=${{ steps.prepare.outputs.sha_short }}
           docker buildx build \
             --platform linux/amd64,linux/arm64 \
-            --build-arg VERSION=${{ steps.prepare.outputs.tag_name }} \
+            --build-arg VERSION=$VERSION \
             --push \
             -t ${DOCKER_REPO:-louisehong/arm64}:$VERSION \
             -t ${DOCKER_REPO:-louisehong/arm64}:latest \
