@@ -38,7 +38,6 @@ if ! command_exists docker; then
   [ -d  /etc/docker/ ] || mkdir /etc/docker/  -p
 cat > /etc/docker/daemon.json  << eof
 {
-  "exec-opts": ["native.cgroupdriver=systemd"],
   "registry-mirrors": [
      "https://bxsfpjcb.mirror.aliyuncs.com"
   ],
