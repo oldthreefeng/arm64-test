@@ -4,11 +4,9 @@
 # Time:2020-12-08 01:17:29
 # Name:kube/shell/containerd.sh
 #!/bin/sh
-command_exists() {
-   command -v "$@" > /dev/null 2>&1
-}
+
 set -x
-if ! command_exists ctr; then
+if ! [ -x /usr/local/bin/ctr ]; then
   tar  xvf ../containerd/cri-containerd-cni-linux-arm64.tar.gz -C /
   [ -f /usr/lib64/libseccomp.so.2 ] || cp ../lib64/lib* /usr/lib64 
   systemctl enable  containerd.service
