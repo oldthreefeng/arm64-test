@@ -29,7 +29,7 @@ echo "install kubernetes bin"
 remotecmd "cd arm64-test && \
            wget https://dl.k8s.io/v$1/kubernetes-server-linux-arm64.tar.gz && \
            wget https://download.docker.com/linux/static/stable/aarch64/docker-19.03.12.tgz && \
-           wget wget https://fenghong.tech/marketctl/crictl-v1.20.0-linux-arm64.tar.gz && \
+           wget https://fenghong.tech/marketctl/crictl-v1.20.0-linux-arm64.tar.gz && \
            cp  docker-19.03.12.tgz kube/docker/docker.tgz && \
            tar zxvf kubernetes-server-linux-arm64.tar.gz && \
 		   tar xf crictl-v1.20.0-linux-arm64.tar.gz  && \
