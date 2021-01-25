@@ -18,5 +18,5 @@ market:
       productVersionStatus: ONLINE
   kind: productVersion
 EOF
-
+export DD_TOKEN=$3
 ./marketctl apply -f marketctl_$1.yaml --token $2 --ci

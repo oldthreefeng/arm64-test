@@ -53,7 +53,7 @@ remotecmd "cd arm64-test && \
 sh huawei/test.sh $1  $FIP
 
 
-remotecmd "cd /root/arm64-test/ && sh huawei/oss.sh $1 $2"
+remotecmd "cd /root/arm64-test/ && sh huawei/oss.sh $1 $2 $3"
 
 mycli hw delete --id $ID --eip
 
