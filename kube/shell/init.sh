@@ -64,10 +64,10 @@ fi
 cat <<EOF >  /etc/sysctl.d/k8s.conf
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
-net.ipv4.conf.all.rp_filter = 1
 EOF
 sysctl --system
 sysctl -w net.ipv4.ip_forward=1
+sysctl -w net.ipv4.conf.all.rp_filter=0 
 disable_firewalld
 swapoff -a || true
 disable_selinux
@@ -79,8 +79,7 @@ cp ../conf/kubelet.service /etc/systemd/system/
 [ -d /etc/systemd/system/kubelet.service.d ] || mkdir /etc/systemd/system/kubelet.service.d
 cp ../conf/10-kubeadm.conf /etc/systemd/system/kubelet.service.d/
 
-cgroupDriver=$(docker info|grep Cg)
-driver=${cgroupDriver##*: }
+driver=$(docker info -f "{{.CgroupDriver}}")
 echo "driver is ${driver}"
 
 [ -d /var/lib/kubelet ] || mkdir -p /var/lib/kubelet/
