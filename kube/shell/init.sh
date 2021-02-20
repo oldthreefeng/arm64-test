@@ -38,14 +38,15 @@ get_distribution() {
 	echo "$lsb_dist"
 }
 
+# for kylin v10 is redhat release like
 disable_firewalld() {
   lsb_dist=$( get_distribution )
 	lsb_dist="$(echo "$lsb_dist" | tr '[:upper:]' '[:lower:]')"
 	case "$lsb_dist" in
-		ubuntu|deepin|debian|kylin)
+		ubuntu|deepin|debian)
 			command -v ufw &> /dev/null && ufw disable
 		;;
-		centos|rhel)
+		centos|rhel|kylin)
 			systemctl stop firewalld && systemctl disable firewalld
 		;;
 		*)
