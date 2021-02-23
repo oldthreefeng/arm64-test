@@ -45,11 +45,11 @@ disable_firewalld() {
 		ubuntu|deepin|debian)
 			command -v ufw &> /dev/null && ufw disable
 		;;
-		centos|rhel|kylin)
+		centos|rhel|kylin|neokylin)
 			systemctl stop firewalld && systemctl disable firewalld
 		;;
 		*)
-			echo "current system not support"
+			systemctl stop firewalld && systemctl disable firewalld	
 		;;
 	esac
 }
