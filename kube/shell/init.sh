@@ -43,14 +43,15 @@ disable_firewalld() {
   lsb_dist=$( get_distribution )
 	lsb_dist="$(echo "$lsb_dist" | tr '[:upper:]' '[:lower:]')"
 	case "$lsb_dist" in
-		ubuntu|deepin|debian)
+		ubuntu|deepin|debian|raspbian)
 			command -v ufw &> /dev/null && ufw disable
 		;;
-		centos|rhel|kylin)
+		centos|rhel|ol|sles|kylin|neokylin)
 			systemctl stop firewalld && systemctl disable firewalld
 		;;
 		*)
-			echo "current system not support"
+		 	systemctl stop firewalld && systemctl disable firewalld	
+			echo "unknown system, use default to stop firewalld"
 		;;
 	esac
 }

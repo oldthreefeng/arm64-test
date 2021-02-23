@@ -24,13 +24,13 @@ if ! command_exists docker; then
 		ubuntu|deepin|debian|raspbian|kylin)
 			cp ../conf/docker.service /lib/systemd/system/docker.service
 		;;
-		centos|rhel|ol|sles)
+		centos|rhel|ol|sles|kylin|neokylin)
 			cp ../conf/docker.service /usr/lib/systemd/system/docker.service
 		;;
 
 		*)
-			echo "current system not support"
-			exit 1
+			echo "unknown system to use /lib/systemd/system/docker.service"
+			cp ../conf/docker.service /lib/systemd/system/docker.service
 		;;
 	esac
   tar --strip-components=1 -xvzf ../docker/docker.tgz -C /usr/bin
